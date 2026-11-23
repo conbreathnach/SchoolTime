@@ -41,9 +41,20 @@
       <button class="primary" id="emptyAddBtn" type="button">Add your first item</button>
     </section>
 
-    <section class="bottom-note">
-      <span class="dot"></span> Saved on this device only
+    <section class="backup-panel">
+      <div class="eyebrow">KEEP YOUR TIMETABLE SAFE</div>
+      <h2>Backup & restore</h2>
+      <p>Save a copy of your whole week, or restore it from a backup file.</p>
+      <div class="backup-actions">
+        <button id="exportBtn" class="secondary" type="button">↓ Export backup</button>
+        <button id="importBtn" class="secondary" type="button">↑ Import backup</button>
+        <input id="importFile" type="file" accept=".json,application/json" hidden>
+      </div>
+      <p class="backup-hint">Importing replaces the timetable currently saved on this phone.</p>
+      <p id="backupStatus" class="backup-status" role="status"></p>
     </section>
+
+    <section class="bottom-note"><span class="dot"></span> Saved on this device only</section>
   </main>
 
   <dialog id="itemDialog">

@@ -1,37 +1,22 @@
-SCHOOLTIME 1.0 — ANDROID WEB APP EDITION
+SCHOOLTIME 1.0 — ANDROID EDITOR WITH BACKUP
 
-This package contains the mobile-friendly SchoolTime editor and the files needed to install it as a home-screen web app (PWA).
+This update adds timetable backup and restore to the mobile editor.
 
-WHAT IT DOES
-- Seven separate days, shown one day at a time
-- Add, edit and delete classes, breaks, lunch, study, free periods and other items
-- Set name, type, room/location, start/end times, colour and notes
-- Sorts items by start time
-- Copy one day's timetable to another day
-- Saves automatically in the browser on THIS device
-- Includes offline caching after the app has been loaded once
+NEW FEATURES
+- Export all seven days to a downloadable JSON backup.
+- Import a SchoolTime JSON backup.
+- Import validates the file before replacing current data.
+- The app asks for confirmation before replacing the current timetable.
 
-IMPORTANT LIMITATIONS
-- This is the Android editor prototype, not the Garmin watch app.
-- The timetable is stored locally on the device. It does not sync with the PC or cloud.
-- The Garmin sync feature is not connected yet.
-- Installing a PWA requires the files to be hosted on an HTTPS website. Opening index.html directly from a ZIP/file manager will let you preview it, but will not enable installation/offline PWA features.
+HOW TO UPDATE GITHUB PAGES
+1. Download and unzip this package.
+2. Open your GitHub repository.
+3. Replace the existing app files with the files in this folder (keep them in the repository's published root).
+4. Commit the changes and wait for GitHub Pages to publish.
+5. On your phone, reload the SchoolTime website. If the installed app still shows the old version, close it and reopen it; the updated service worker should refresh its cached files.
 
-HOW TO PUT IT ON YOUR ANDROID HOME SCREEN
-1. The files need to be published to a secure HTTPS website first. A simple option is GitHub Pages.
-2. On your Android phone, open the published website in Chrome.
-3. Open Chrome's menu (three dots) and choose "Install app" or "Add to Home screen" (the wording can vary).
-4. Open SchoolTime from its new home-screen icon.
-
-DATA
-SchoolTime stores timetable data in the browser's local storage on the phone. Do not clear Chrome's site data if you want to keep the timetable. This version does not yet include export/import backup, so keep that in mind before entering a large timetable.
-
-PROJECT FILES
-index.html          App layout
-styles.css          Dark, responsive phone design
-app.js              Timetable editor and local saving
-manifest.webmanifest PWA install information
-service-worker.js   Offline app shell cache
-icon.svg            Home-screen icon
-
-The PC development copy and Android timetable remain separate by design.
+IMPORTANT
+- Export a backup before importing another file. Import replaces all seven days.
+- The timetable itself remains stored locally on this phone; it is not shared with the PC or cloud.
+- Garmin sync is not implemented in this update.
+- This is still the mobile editor, not the completed Garmin watch app.
