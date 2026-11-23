@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10131b">
+  <meta name="description" content="A simple, customisable weekly school timetable.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>SchoolTime</title>
+</head>
+<body>
+  <header class="topbar">
+    <div><div class="eyebrow">YOUR WEEK, ORGANISED</div><h1>SchoolTime</h1></div>
+    <button id="installBtn" class="quiet hidden" type="button">Install</button>
+  </header>
+  <main>
+    <section class="day-panel">
+      <label for="daySelect">TIMETABLE DAY</label>
+      <select id="daySelect" aria-label="Choose a day">
+        <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
+        <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
+      </select>
+      <div class="day-actions">
+        <button id="copyDayBtn" class="secondary" type="button">Copy day to…</button>
+        <button id="addBtn" class="primary" type="button">＋ Add item</button>
+      </div>
+    </section>
+
+    <section class="summary">
+      <div><span class="summary-number" id="itemCount">0</span><span class="summary-label">items today</span></div>
+      <p>Changes are saved automatically on this device.</p>
+    </section>
+
+    <section id="items" class="items" aria-live="polite"></section>
+    <section id="emptyState" class="empty">
+      <div class="empty-icon">＋</div>
+      <h2>Your day is clear</h2>
+      <p>Add a class, break, lunch or study period to get started.</p>
+      <button class="primary" id="emptyAddBtn" type="button">Add your first item</button>
+    </section>
+
+    <section class="bottom-note">
+      <span class="dot"></span> Saved on this device only
+    </section>
+  </main>
+
+  <dialog id="itemDialog">
+    <form id="itemForm" method="dialog">
+      <div class="dialog-head"><div><div class="eyebrow">TIMETABLE EDITOR</div><h2 id="dialogTitle">Add item</h2></div><button class="close" type="button" id="closeDialog" aria-label="Close">×</button></div>
+      <input type="hidden" id="itemId">
+      <label for="itemName">Name</label>
+      <input id="itemName" maxlength="50" placeholder="e.g. Mathematics" required>
+      <div class="two-col">
+        <div><label for="itemType">Type</label><select id="itemType"><option>Class</option><option>Break</option><option>Lunch</option><option>Study</option><option>Free</option><option>Other</option></select></div>
+        <div><label for="itemRoom">Room / location</label><input id="itemRoom" maxlength="35" placeholder="e.g. Room 14"></div>
+      </div>
+      <div class="two-col">
+        <div><label for="itemStart">Start</label><input id="itemStart" type="time" value="09:00" required></div>
+        <div><label for="itemEnd">Finish</label><input id="itemEnd" type="time" value="10:00" required></div>
+      </div>
+      <label for="itemColor">Colour</label>
+      <div class="colour-row"><input id="itemColor" type="color" value="#7c8cff"><span>Choose a different colour for each subject or activity.</span></div>
+      <label for="itemNotes">Notes (optional)</label>
+      <textarea id="itemNotes" rows="2" maxlength="180" placeholder="Anything you want to remember…"></textarea>
+      <p id="formError" class="error" role="alert"></p>
+      <div class="dialog-actions"><button type="button" class="secondary" id="cancelBtn">Cancel</button><button type="submit" class="primary">Save item</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="copyDialog">
+    <form id="copyForm" method="dialog">
+      <div class="dialog-head"><div><div class="eyebrow">COPY TIMETABLE</div><h2>Copy this day</h2></div><button class="close" type="button" id="closeCopy" aria-label="Close">×</button></div>
+      <p class="muted">This replaces the selected day's timetable with a copy of <strong id="copySource"></strong>.</p>
+      <label for="copyTarget">Copy to</label>
+      <select id="copyTarget"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select>
+      <div class="dialog-actions"><button type="button" class="secondary" id="cancelCopy">Cancel</button><button type="submit" class="primary">Copy timetable</button></div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
